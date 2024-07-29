@@ -1,0 +1,7 @@
+<div class="flex-column justify-start align-stretch flex-gap-5">
+  @for (log of logger.logs | async; track log.id) {
+    <span>#{{log.id}} {{log.msg}}</span>
+  } @empty {
+    <span>No logs</span>
+  }
+</div>

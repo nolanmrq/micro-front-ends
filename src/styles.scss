@@ -1,0 +1,53 @@
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+.flex-column {
+   display: flex;
+   flex-flow: column;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+.justify-center {
+  justify-content: center;
+}
+.align-stretch {
+  align-items: stretch;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+.align-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-gap-5 {
+  gap: 5px
+}
+.flex-gap-10 {
+  gap: 10px
+}
+.flex-gap-20 {
+  gap: 20px
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
