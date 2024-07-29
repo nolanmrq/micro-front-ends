@@ -1,1 +1,18 @@
-<p>todo-form works!</p>
+<mat-card [formGroup]="form">
+  <mat-card-content class="flex-column align-center flex-gap-10">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput #titleInput formControlName="title" maxlength="20">
+      <mat-hint>{{ titleInput.value.length }} / {{ titleInput.maxLength }}</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Text</mat-label>
+      <input matInput #textInput formControlName="text" maxlength="255">
+      <mat-hint>{{ textInput.value.length }} / {{ textInput.maxLength }}</mat-hint>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button color="success" (click)="submit()" [disabled]="!form.dirty || form.invalid">Save</button>
+    <button mat-button (click)="form.reset()" [disabled]="!form.dirty">Reset</button>
+  </mat-card-actions>
+</mat-card>
