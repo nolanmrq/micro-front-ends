@@ -1,2 +1,4 @@
-<lib-todo-list></lib-todo-list>
-<lib-todo-form (save)="store.save($event)"></lib-todo-form>
+<div class="flex-column align-stretch flex-gap-10">
+  <lib-todo-form (save)="store.save($event)"></lib-todo-form>
+  <lib-todo-list></lib-todo-list>
+</div>

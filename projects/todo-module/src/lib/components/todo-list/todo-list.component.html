@@ -1,11 +1,22 @@
-<mat-selection-list multiple xmlns="http://www.w3.org/1999/html">
-  @for (todo of store.todos | async; track todo.id) {
-    <mat-list-option [selected]="todo.done" (click)="$event.preventDefault(); toggleDone(todo)">
-      <p matListItemTitle>{{ todo.title }}</p>
-      <p matListItemLine>
-        <span>{{ todo.text }}</span>
-        <button mat-button color="warn" (click)="$event.stopPropagation(); store.delete(todo)">Delete</button>
-      </p>
-    </mat-list-option>
-  }
-</mat-selection-list>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Todos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-selection-list multiple xmlns="http://www.w3.org/1999/html">
+      @for (todo of store.todos | async; track todo.id) {
+        <mat-list-option [selected]="todo.done" (click)="$event.preventDefault(); toggleDone(todo)">
+          <p matListItemTitle>{{ todo.title }}</p>
+          <p matListItemLine>
+            <span>{{ todo.text }}</span>
+            <button mat-button color="warn" (click)="$event.stopPropagation(); store.delete(todo)">Delete</button>
+          </p>
+        </mat-list-option>
+      } @empty {
+        <mat-list-item lines="1">
+          <span matListItemTitle>No todo</span>
+        </mat-list-item>
+      }
+    </mat-selection-list>
+  </mat-card-content>
+</mat-card>

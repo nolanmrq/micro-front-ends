@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run build:subprojects && ng serve",
+    "build": "npm run build:subprojects && ng build",
+    "build:subprojects": "npm run build:log-module && npm run build:todo-module",
     "build:log-module": "ng build log-module",
     "build:todo-module": "ng build todo-module",
     "build:log-ui": "npm run build:log-module && ng build log-ui",

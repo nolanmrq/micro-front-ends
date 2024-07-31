@@ -1,23 +1,16 @@
 import {InjectionToken} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, count, Observable} from "rxjs";
 import {Todo} from "./models/todo";
 
-export const TODO_STORE = new InjectionToken('Service de stockage des todos', {
+export const TODO_STORE = new InjectionToken<TodoStore>('Service de stockage des todos', {
   providedIn: 'root',
-  factory: () => new TodoStoreService()
+  factory: () => new TodoStoreImpl()
 })
 
-export interface TodoStore {
-  get todos(): Observable<Todo[]>;
-  save(todo: Todo): void;
-  check(todo: Todo): void;
-  uncheck(todo: Todo): void;
-  delete(todo: Todo): void;
-}
+export abstract class TodoStore {
 
-class TodoStoreService implements TodoStore {
-
-  private _todos = new BehaviorSubject<Todo[]>([]);
+  private count = 0;
+  protected _todos = new BehaviorSubject<Todo[]>([]);
 
   constructor() { }
 
@@ -25,7 +18,15 @@ class TodoStoreService implements TodoStore {
     return this._todos.asObservable();
   }
   save(todo: Todo): void {
-    this._todos.next([todo, ...this._todos.value]);
+    const update = this._todos.value.find(_todo => _todo.id === todo.id);
+    if (update) {
+      update.title = todo.title;
+      update.text = todo.text;
+    } else {
+      this.count++;
+      todo.id = this.count;
+      this._todos.next([todo, ...this._todos.value]);
+    }
   }
   check(todo: Todo): void {
     todo.done = true;
@@ -42,3 +43,5 @@ class TodoStoreService implements TodoStore {
     }
   }
 }
+
+class TodoStoreImpl extends TodoStore {}

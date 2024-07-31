@@ -1,5 +1,24 @@
-//@use "@angular/material" as mat;
 @use "@angular/material/prebuilt-themes/azure-blue.css";
+
+html, body {
+  max-height: 100vh;
+}
+
+body, .p-10 {
+  padding: 10px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
 
 .flex-row {
   display: flex;
@@ -51,6 +70,3 @@
 .flex-gap-20 {
   gap: 20px
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

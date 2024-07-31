@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {
-  MatList,
+  MatList, MatListItem,
   MatListItemLine,
   MatListItemMeta,
   MatListItemTitle,
@@ -11,6 +11,7 @@ import {TODO_STORE, TodoStore} from "../../todo-store.service";
 import {AsyncPipe} from "@angular/common";
 import {Todo} from "../../models/todo";
 import {MatButton} from "@angular/material/button";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 
 @Component({
   selector: 'lib-todo-list',
@@ -23,7 +24,12 @@ import {MatButton} from "@angular/material/button";
     MatListItemTitle,
     MatListItemLine,
     MatListItemMeta,
-    MatButton
+    MatButton,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatListItem
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
