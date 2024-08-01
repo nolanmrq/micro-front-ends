@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Kanban</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content flex-row justify-start align-start flex-gap-10">
+    @for (column of columns(); let i = $index; track column) {
+      <lib-kanban-column [id]="'kanban-column-' + column.label" [column]="column" [contextId]="contextId()" class="flex-1"></lib-kanban-column>
+    } @empty {
+      <span>No column</span>
+    }
+  </mat-card-content>
+</mat-card>

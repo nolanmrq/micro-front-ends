@@ -9,6 +9,12 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "paths": {
+      "dragndrop-module": [
+        "./dist/dragndrop-module"
+      ],
+      "kanban-module": [
+        "./dist/kanban-module"
+      ],
       "log-module": [
         "./dist/log-module"
       ],

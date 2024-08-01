@@ -21,11 +21,11 @@ body, .p-10 {
 }
 
 .flex-row {
-  display: flex;
+  display: flex !important;
   flex-flow: row;
 }
 .flex-column {
-   display: flex;
+   display: flex !important;;
    flex-flow: column;
 }
 .justify-start {
