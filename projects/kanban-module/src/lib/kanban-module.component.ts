@@ -20,6 +20,5 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/mat
 export class KanbanModuleComponent<T extends Item> {
 
   columns = input.required<Column<T>[]>();
-  contextId = input.required<string>();
 
 }

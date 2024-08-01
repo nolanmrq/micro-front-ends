@@ -1,6 +1,12 @@
 import {InjectionToken} from '@angular/core';
 import {CdkDropList} from "@angular/cdk/drag-drop";
 
+
+export const DRAG_N_DROP_CONTEXT = new InjectionToken<string>('Drag and drop context', {
+  providedIn: 'root',
+  factory: () => 'global'
+})
+
 export const DRAG_N_DROP_PROVIDER_FACTORY = new InjectionToken<DragNDropProviderFactory>('Factory des providers de drag and drop', {
   providedIn: 'root',
   factory: () => new DragNDropProviderFactory()
@@ -39,10 +45,16 @@ export class DragNDropProvider {
 
   registerDropList(...cdkDropLists: CdkDropList[]) {
     const newIds = cdkDropLists.map(list => list.id);
-    if (cdkDropLists.length !== newIds.length) {
-      console.warn(`Duplicate entry in this CdkDropList ids : ${newIds}`)
+    if (newIds.length !== new Set(newIds).size) {
+      console.warn(`Duplicate entry in this CdkDropList ids !`, newIds)
     }
     const existingIds = this.connectedDropList
+      .filter(cdkDropList => {
+        if (!cdkDropList.id) {
+          console.error(`Unable to register CdkDropList without id !`, cdkDropList)
+        }
+        return !!cdkDropList.id;
+      })
       .map(cdkDropList => {
         let connectedTo: (string | CdkDropList)[] = [];
         if (Array.isArray(cdkDropList.connectedTo)) {
@@ -55,10 +67,11 @@ export class DragNDropProvider {
       });
     const duplicates = newIds.filter(id => existingIds.includes(id));
     if (duplicates.length) {
-      console.warn(`This CdkDropList ids are duplicated with existing ids : ${duplicates}`);
+      console.warn(`This CdkDropList ids are duplicated with existing ids !`, duplicates);
     }
     cdkDropLists.forEach(cdkDropList => {
       cdkDropList.connectedTo = [...existingIds, ...newIds.filter(id => cdkDropList.id !== id)];
+      cdkDropList.element.nativeElement.classList.add(this.contextId);
     })
     this.connectedDropList.push(...cdkDropLists);
   }

@@ -2,26 +2,31 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { KanbanModuleComponent, Column, Item } from 'kanban-module';
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
-
-class Task extends Item {
-  constructor(id: number) {
-    super();
-    this.id = id;
-  }
-}
+import {DRAG_N_DROP_CONTEXT} from "dragndrop-module";
+import {Task} from "./models/task";
+import {SplitKanbanComponent} from "./components/split-kanban/split-kanban.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, KanbanModuleComponent, CdkDropList, CdkDrag],
+  imports: [
+    RouterOutlet,
+    KanbanModuleComponent,
+    CdkDropList,
+    CdkDrag,
+    SplitKanbanComponent
+  ],
+  providers: [
+    {
+      provide: DRAG_N_DROP_CONTEXT,
+      useValue: 'kanban-context'
+    }
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   columns: Column<Task>[] = [];
-  columns1: Column<Task>;
-  columns2: Column<Task>;
-  columns3: Column<Task>;
 
   constructor() {
     const item1 = new Task(1);
@@ -31,8 +36,5 @@ export class AppComponent {
     this.columns.push(new Column('TASKS', [item1, item2, item3]));
     this.columns.push(new Column('TODO', [item4]));
     this.columns.push(new Column('DONE'));
-    this.columns1 = new Column('TASKS_BIS');
-    this.columns2 = new Column('TODO_BIS', [item3, item4]);
-    this.columns3 = new Column('DONE_BIS', [item1, item2]);
   }
 }
