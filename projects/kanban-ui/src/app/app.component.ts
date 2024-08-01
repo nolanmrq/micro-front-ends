@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { KanbanModuleComponent, Column, Item } from 'kanban-module';
+import { KanbanModuleComponent, Column, KANBAN_ITEM_COMPONENT } from 'kanban-module';
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 import {DRAG_N_DROP_CONTEXT} from "dragndrop-module";
 import {Task} from "./models/task";
 import {SplitKanbanComponent} from "./components/split-kanban/split-kanban.component";
+import {KanbanItemComponent} from "./components/kanban-item/kanban-item.component";
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,10 @@ import {SplitKanbanComponent} from "./components/split-kanban/split-kanban.compo
     {
       provide: DRAG_N_DROP_CONTEXT,
       useValue: 'kanban-context'
+    },
+    {
+      provide: KANBAN_ITEM_COMPONENT,
+      useValue: KanbanItemComponent
     }
   ],
   templateUrl: './app.component.html',

@@ -2,9 +2,10 @@ import {Component, Inject, Injectable} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {LOGGER, Logger, LogModuleComponent} from 'log-module';
 import {TODO_STORE, TodoFormComponent, TodoListComponent, TodoStore} from 'todo-module';
-import {Column, KanbanModuleComponent} from "kanban-module";
+import {Column, KanbanModuleComponent, KANBAN_ITEM_COMPONENT} from "kanban-module";
 import {Task} from "./models/task";
 import {DRAG_N_DROP_CONTEXT} from "dragndrop-module";
+import {KanbanItemComponent} from "./components/kanban-item/kanban-item.component";
 
 export const COLUMN_TODO = new Column<Task>('TODO');
 export const COLUMN_DONE = new Column<Task>('DONE');
@@ -58,6 +59,10 @@ class TaskService extends TodoStore {
     {
       provide: DRAG_N_DROP_CONTEXT,
       useValue: 'task-context'
+    },
+    {
+      provide: KANBAN_ITEM_COMPONENT,
+      useValue: KanbanItemComponent
     }
   ],
   templateUrl: './app.component.html',

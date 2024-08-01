@@ -2,7 +2,7 @@
 <div class="items flex-1" cdkDropList [cdkDropListData]="column().items" [id]="id()" (cdkDropListDropped)="drop($event)">
   @for (item of column().items; track item) {
     <div class="item" cdkDrag>
-      {{item.id}}
+      <ng-container *ngComponentOutlet="this.component; inputs: {item}"></ng-container>
     </div>
   }
 </div>
