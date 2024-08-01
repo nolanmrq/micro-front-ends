@@ -1,8 +1,10 @@
-import {Item} from "kanban-module";
+import {Column, Item} from "kanban-module";
 
-export class Task extends Item {
+export class Task implements Item {
+  id: number;
+  column?: Column<Task>;
+
   constructor(id: number) {
-    super();
     this.id = id;
   }
 }

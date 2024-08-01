@@ -2,10 +2,7 @@ import {InjectionToken} from '@angular/core';
 import {CdkDropList} from "@angular/cdk/drag-drop";
 
 
-export const DRAG_N_DROP_CONTEXT = new InjectionToken<string>('Drag and drop context', {
-  providedIn: 'root',
-  factory: () => 'global'
-})
+export const DRAG_N_DROP_CONTEXT = new InjectionToken<string>('Drag and drop context')
 
 export const DRAG_N_DROP_PROVIDER_FACTORY = new InjectionToken<DragNDropProviderFactory>('Factory des providers de drag and drop', {
   providedIn: 'root',

@@ -3,5 +3,8 @@
     <lib-todo-form (save)="store.save($event)"></lib-todo-form>
     <lib-todo-list></lib-todo-list>
   </div>
-  <lib-log-module class="flex-1"></lib-log-module>
+  <div class="flex-column align-stretch flex-gap-10 flex-1">
+    <lib-kanban-module [columns]="columns"></lib-kanban-module>
+    <lib-log-module class="flex-1"></lib-log-module>
+  </div>
 </div>
