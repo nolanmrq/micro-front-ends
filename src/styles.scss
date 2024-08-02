@@ -70,3 +70,41 @@ body, .p-10 {
 .flex-gap-20 {
   gap: 20px
 }
+
+.cdk-drag {
+  background-color: aquamarine;
+}
+
+.cdk-drop-list-receiving, .cdk-drop-list-dragging {
+  position: relative;
+
+  &:after {
+    $borderWidthPx: 2px;
+    position: absolute;
+    content: '';
+    display: block;
+    width: calc(100% - ($borderWidthPx * 2));
+    height: calc(100% - ($borderWidthPx * 2));
+    border: $borderWidthPx dotted brown;
+  }
+
+  &.cdk-drop-list-disabled {
+    pointer-events: none;
+
+    &:after {
+      background-color: rgba(0,0,0, .2);
+    }
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  background-color: black;
+}

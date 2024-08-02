@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {Column, KanbanModuleComponent} from "kanban-module";
+import {Column, KANBAN_ITEM_COMPONENT, KanbanModuleComponent} from "kanban-module";
 import {Task} from "../../models/task";
 import {DRAG_N_DROP_CONTEXT} from "dragndrop-module";
+import {SplitKanbanItemComponent} from "../split-kanban-item/split-kanban-item.component";
 
 @Component({
   selector: 'app-split-kanban',
@@ -13,6 +14,10 @@ import {DRAG_N_DROP_CONTEXT} from "dragndrop-module";
     {
       provide: DRAG_N_DROP_CONTEXT,
       useValue: 'split-kanban-context'
+    },
+    {
+      provide: KANBAN_ITEM_COMPONENT,
+      useValue: SplitKanbanItemComponent
     }
   ],
   templateUrl: './split-kanban.component.html',
